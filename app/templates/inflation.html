@@ -21,7 +21,13 @@
             {% for year in Statistics %}
             <tr>
             {% for data in year %}
-              {% if data|check < 0 %}
+              {% if forloop.parentloop.first %}
+                <th bgcolor="ffffff">{{ data }}</th>
+              {% elif forloop.first %}
+                <td bgcolor="ffffff">{{ data }}</td>
+              {% elif forloop.last %}
+                <td bgcolor="aaaaaa">{{ data }}</td>
+              {% elif data|check < 0 %}
                 <td bgcolor="90ff90">{{ data }}</td>
               {% elif data|check >= 0 and data|check <= 1%}
                 <td bgcolor="ffffff">{{ data }}</td>
